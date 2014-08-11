@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<tool id="edu.tamu.cpt.json.JSONPath" name="JSON Query Utility" version="1.0.0">
+  <description>allows for XPath like queries on JSON data</description>
+  <stdio>
+    <exit_code level="fatal" range="1:"/>
+  </stdio>
+  <command>php run.php ${file} "${query}"
+> "${outfile}"
+</command>
+  <inputs>
+    <param help="JSON File" label="file" name="file" optional="False" type="data"/>
+    <param help="JSONPath Query" label="query" name="query" optional="False" type="text" value="0.0001"/>
+    <!--<param help="Should the full search path be included in the results?" label="option" name="option" optional="True" type="select">-->
+      <!--<option value="PATH">Yes</option>-->
+      <!--<option value="notpath">No</option>-->
+    <!--</param>-->
+  </inputs>
+  <outputs>
+    <data format="json" name="outfile" />
+  </outputs>
+  <help>JSON XPath like queries.
+http://goessner.net/articles/JsonPath/
+
+</help>
+  <tests>
+    <test>
+      <param name="file" value="test-data/test.json"/>
+      <param name="query" value="$..author"/>
+      <output file="test-data/test-author-query.json" name="test_output"/>
+    </test>
+  </tests>
+</tool>
