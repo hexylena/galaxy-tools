@@ -23,7 +23,7 @@ depends:
      build_req: True
 build:
    actions:
-      - mkdir: mkdir $INSTALL_DIR/lib/python
+      - mkdir: $INSTALL_DIR/lib/python
       - shell_command: |
            export PYTHONPATH=$PYTHONPATH:$INSTALL_DIR/lib/python
            python setup.py install --install-lib $INSTALL_DIR/lib/python --install-scripts $INSTALL_DIR/bin
