@@ -1,0 +1,35 @@
+---
+meta:
+   name: package_blasr_2014_06_10
+   vers: 2014.06.10
+   readme: |
+source:
+   git_repo:
+      url: https://github.com/PacificBiosciences/blasr
+      rev: abf9c38c55c2fb5f40316885dce39f5308c9ff25
+build:
+   commands: |
+      make
+   actions:
+      - action: move_directory_files
+        source: alignment/bin/
+        dest: $INSTALL_DIR/bin/
+      - action: move_directory_files
+        source: bwtutils/bin/
+        dest: $INSTALL_DIR/bin/
+      - action: move_directory_files
+        source: pbihdfutils/bin/
+        dest: $INSTALL_DIR/bin/
+      - action: move_directory_files
+        source: sequtils/bin/
+        dest: $INSTALL_DIR/bin/
+      - action: move_directory_files
+        source: simulator/bin/
+        dest: $INSTALL_DIR/bin/
+   env:
+      - action: prepend
+        name: PATH
+        value: $INSTALL_DIR/bin/
+      - action: set
+        name: BLASR_PATH
+        value: $INSTALL_DIR/
