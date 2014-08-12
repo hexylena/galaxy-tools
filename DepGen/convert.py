@@ -17,6 +17,8 @@ def handle_dependency(node, dependency, in_build=False):
         repo = ET.SubElement(package, 'repository')
         repo.set('name', dependency['repo_name'])
         repo.set('owner', dependency['repo_owner'])
+        if 'repo_rev' in dependency:
+            repo.set('revision', dependency['repo_rev'])
         if dependency['build_req']:
             repo.set('prior_installation_required', 'True')
     else:
@@ -47,11 +49,6 @@ def handle_download_actions(node):
         raise Exception("Unimplemented source")
 
 
-def handle_build_commands(node):
-    action = ET.SubElement(node, 'action')
-    action.set('type', 'shell_command')
-    action.text = data['build']['commands'].strip().replace('\n', ' && ')
-
 
 env_actions = {
     'prepend': 'prepend_to',
@@ -60,6 +57,8 @@ env_actions = {
 
 
 def handle_post_build_env(node):
+    if 'env' not in data['build']:
+        return
     action = ET.SubElement(node, 'action')
     action.set('type', 'set_environment')
     for env in data['build']['env']:
@@ -85,9 +84,15 @@ def handle_extra_actions(node):
         return
     for action_data in data['build']['actions']:
         action = ET.SubElement(node, 'action')
-        action.set('type', action_data['action'])
 
-        if action_data['action'] == 'move_directory_files':
+        if 'mkdir' in action_data:
+            action.set('type', 'make_directory')
+            action.text = action_data['mkdir']
+        elif 'shell_command' in action_data:
+            action.set('type', 'shell_command')
+            action.text = action_data['shell_command'].strip().replace('\n', '&&\n')
+        elif 'move_directory_files' in action_data:
+            action.set('type', 'move_directory_files')
             source = ET.SubElement(action, 'source_directory')
             source.text = action_data['source']
             destination = ET.SubElement(action, 'destination_directory')
@@ -105,7 +110,6 @@ def handle_package(node):
     actions = ET.SubElement(install, 'actions')
     handle_download_actions(actions)
     handle_dependencies_actions(actions)
-    handle_build_commands(actions)
     handle_extra_actions(actions)
     handle_post_build_env(actions)
 
