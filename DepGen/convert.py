@@ -90,7 +90,7 @@ def handle_extra_actions(node):
             action.text = action_data['mkdir']
         elif 'shell_command' in action_data:
             action.set('type', 'shell_command')
-            action.text = action_data['shell_command'].strip().replace('\n', '&&\n')
+            action.text = action_data['shell_command'].strip().replace('\n', ' && ')
         elif 'move_directory_files' in action_data:
             action.set('type', 'move_directory_files')
             source = ET.SubElement(action, 'source_directory')

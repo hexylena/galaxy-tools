@@ -15,9 +15,9 @@ depends:
      vers: 1.8.0
      build_req: True
 build:
-   commands: |
-      make
    actions:
+      - shell_command: |
+           make
       - move_directory_files:
         source: alignment/bin/
         dest: $INSTALL_DIR/bin/

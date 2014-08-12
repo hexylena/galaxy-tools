@@ -20,17 +20,18 @@ depends:
      vers: 1.6.7
      build_req: True
 build:
-   commands: |
-      export HOME=$INSTALL_DIR
-      export MACHTYPE=`uname -m`
-      export PNGINCL=-I${LIBPNG_ROOT}/include
-      export PNGLIB="-L${LIBPNG_ROOT}/lib -lpng"
-      mkdir -p $HOME/bin/$MACHTYPE
-      make -C src/lib/
-      make -C src/jkOwnLib/
-      make -C src/blat/
-      mv $INSTALL_DIR/bin/$MACHTYPE/* $INSTALL_DIR/bin/
-      rm -rf $INSTALL_DIR/.ccache/
+   actions:
+      - shell_command: |
+         export HOME=$INSTALL_DIR
+         export MACHTYPE=`uname -m`
+         export PNGINCL=-I${LIBPNG_ROOT}/include
+         export PNGLIB="-L${LIBPNG_ROOT}/lib -lpng"
+         mkdir -p $HOME/bin/$MACHTYPE
+         make -C src/lib/
+         make -C src/jkOwnLib/
+         make -C src/blat/
+         mv $INSTALL_DIR/bin/$MACHTYPE/* $INSTALL_DIR/bin/
+         rm -rf $INSTALL_DIR/.ccache/
    env:
       - action: prepend
         name: PATH
