@@ -45,7 +45,7 @@ def handle_download_actions(node):
         set_rev = ET.SubElement(node, 'action')
         set_rev.set('type', 'shell_command')
         set_rev.text = 'git reset --hard %s' % data['source']['git_repo']['rev']
-    if 'archive_url' in data['source']:
+    elif 'archive_url' in data['source']:
         dl = ET.SubElement(node, 'action')
         dl.set('type', 'download_by_url')
         dl.text = data['source']['archive_url']
