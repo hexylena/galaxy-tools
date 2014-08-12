@@ -29,6 +29,8 @@ def handle_dependency(node, dependency, in_build=False):
 
 
 def handle_dependencies(node, in_build=False):
+    if 'depends' not in data:
+        return
     for dependency in data['depends']:
         handle_dependency(node, dependency, in_build)
 
@@ -69,11 +71,29 @@ def handle_post_build_env(node):
 
 
 def handle_dependencies_actions(node):
+    if 'depends' not in data:
+        return
     for dependency in data['depends']:
         if dependency['build_req']:
             action = ET.SubElement(node, 'action')
             action.set('type', 'set_environment_for_install')
             handle_dependency(action, dependency, in_build=True)
+
+
+def handle_extra_actions(node):
+    if 'actions' not in data['build']:
+        return
+    for action_data in data['build']['actions']:
+        action = ET.SubElement(node, 'action')
+        action.set('type', action_data['action'])
+
+        if action_data['action'] == 'move_directory_files':
+            source = ET.SubElement(action, 'source_directory')
+            source.text = action_data['source']
+            destination = ET.SubElement(action, 'destination_directory')
+            destination.text = action_data['dest']
+        else:
+            raise Exception("Unsupported action type")
 
 
 def handle_package(node):
@@ -86,6 +106,7 @@ def handle_package(node):
     handle_download_actions(actions)
     handle_dependencies_actions(actions)
     handle_build_commands(actions)
+    handle_extra_actions(actions)
     handle_post_build_env(actions)
 
     readme = ET.SubElement(package, 'readme')
