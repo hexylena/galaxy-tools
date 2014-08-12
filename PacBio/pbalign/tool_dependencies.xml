@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<tool_dependency>
+  <package name="numpy" version="1.8.1">
+    <repository name="package_numpy_1_8" owner="iuc" prior_installation_required="True" revision="0f9f634dec8a"/>
+  </package>
+  <package name="h5py" version="Unknown">
+    <repository name="package_h5py" owner="erasche" prior_installation_required="True"/>
+  </package>
+  <package name="package_blasr_2014_06_10" version="2014.06.10">
+    <install version="1.0">
+      <actions>
+        <action type="shell_command">git clone https://github.com/PacificBiosciences/pbalign package_blasr_2014_06_10</action>
+        <action type="shell_command">git reset --hard a95c61749be66fff26893a2ca9d432b06d77639e</action>
+        <action type="set_environment_for_install">
+          <repository name="package_numpy_1_8" owner="iuc">
+            <package name="numpy" version="1.8.1"/>
+          </repository>
+        </action>
+        <action type="set_environment_for_install">
+          <repository name="package_h5py" owner="erasche">
+            <package name="h5py" version="Unknown"/>
+          </repository>
+        </action>
+        <action type="make_directory">mkdir $INSTALL_DIR/lib/python</action>
+        <action type="shell_command">export PYTHONPATH=$PYTHONPATH:$INSTALL_DIR/lib/python&amp;&amp;
+python setup.py install --install-lib $INSTALL_DIR/lib/python --install-scripts $INSTALL_DIR/bin</action>
+      </actions>
+    </install>
+    <readme/>
+  </package>
+</tool_dependency>

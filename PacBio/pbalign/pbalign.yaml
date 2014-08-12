@@ -1,0 +1,29 @@
+---
+meta:
+   name: package_pbalign_2014_04_28
+   vers: 2014.04.28
+   readme: |
+      pbalign maps PacBio reads to reference sequences.
+source:
+   git_repo:
+      url: https://github.com/PacificBiosciences/pbalign
+      rev: a95c61749be66fff26893a2ca9d432b06d77639e
+depends:
+   - repo_name: package_numpy_1_8
+     repo_owner: iuc
+     repo_rev: 0f9f634dec8a
+     name: numpy
+     vers: 1.8.1
+     build_req: True
+   - repo_name: package_h5py
+     repo_owner: erasche
+     #repo_rev: 0f9f634dec8a
+     name: h5py
+     vers: Unknown
+     build_req: True
+build:
+   actions:
+      - mkdir: mkdir $INSTALL_DIR/lib/python
+      - shell_command: |
+           export PYTHONPATH=$PYTHONPATH:$INSTALL_DIR/lib/python
+           python setup.py install --install-lib $INSTALL_DIR/lib/python --install-scripts $INSTALL_DIR/bin
