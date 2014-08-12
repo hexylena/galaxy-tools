@@ -1,11 +1,18 @@
 <?xml version="1.0"?>
 <tool_dependency>
+  <package name="hdf5" version="1.8.0">
+    <repository name="package_libhdf5_1.8.0" owner="erasche" prior_installation_required="True"/>
+  </package>
   <package name="package_blasr_2014_06_10" version="2014.06.10">
     <install version="1.0">
       <actions>
         <action type="shell_command">git clone https://github.com/PacificBiosciences/blasr package_blasr_2014_06_10</action>
         <action type="shell_command">git reset --hard abf9c38c55c2fb5f40316885dce39f5308c9ff25</action>
-        <action type="shell_command">make</action>
+        <action type="set_environment_for_install">
+          <repository name="package_libhdf5_1.8.0" owner="erasche">
+            <package name="hdf5" version="1.8.0"/>
+          </repository>
+        </action>
         <action type="move_directory_files">
           <source_directory>alignment/bin/</source_directory>
           <destination_directory>$INSTALL_DIR/bin/</destination_directory>

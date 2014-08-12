@@ -7,23 +7,30 @@ source:
    git_repo:
       url: https://github.com/PacificBiosciences/blasr
       rev: abf9c38c55c2fb5f40316885dce39f5308c9ff25
+depends:
+   - repo_name: package_libhdf5_1.8.0
+     repo_owner: erasche
+     #repo_rev: 0f9f634dec8a
+     name: hdf5
+     vers: 1.8.0
+     build_req: True
 build:
    commands: |
       make
    actions:
-      - action: move_directory_files
+      - move_directory_files:
         source: alignment/bin/
         dest: $INSTALL_DIR/bin/
-      - action: move_directory_files
+      - move_directory_files:
         source: bwtutils/bin/
         dest: $INSTALL_DIR/bin/
-      - action: move_directory_files
+      - move_directory_files:
         source: pbihdfutils/bin/
         dest: $INSTALL_DIR/bin/
-      - action: move_directory_files
+      - move_directory_files:
         source: sequtils/bin/
         dest: $INSTALL_DIR/bin/
-      - action: move_directory_files
+      - move_directory_files:
         source: simulator/bin/
         dest: $INSTALL_DIR/bin/
    env:
