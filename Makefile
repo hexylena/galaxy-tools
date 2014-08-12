@@ -2,7 +2,7 @@ CONVERTER:=DepGen/convert.py
 pacbio: PacBio/blasr/tool_dependencies.xml PacBio/pbalign/tool_dependencies.xml
 
 clean:
-	rm PacBio/blasr/tool_dependencies.xml PacBio/pbalign/tool_dependencies.xml
+	@rm -f PacBio/blasr/tool_dependencies.xml PacBio/pbalign/tool_dependencies.xml
 
 PacBio/blasr/tool_dependencies.xml:
 	python ${CONVERTER} PacBio/blasr/blasr.yaml |xmllint --pretty 1 -  > PacBio/blasr/tool_dependencies.xml
