@@ -1,0 +1,28 @@
+---
+meta:
+   name: package_blasr_2014_06_10
+   vers: 2014.06.10
+   readme: |
+      Free form text goes here
+
+      Yaaay.
+source:
+   git_repo:
+      url: https://github.com/PacificBiosciences/blasr
+      rev: abf9c38c55c2fb5f40316885dce39f5308c9ff25
+depends:
+   - repo_name: package_numpy_1_7
+     repo_owner: iuc
+     name: numpy
+     vers: 1.7.1
+     build_req: True
+build:
+   commands: |
+      make
+   env:
+      - action: prepend
+        name: PATH
+        value: $INSTALL_DIR/bin/
+      - action: set
+        name: BLASR_PATH
+        value: $INSTALL_DIR/

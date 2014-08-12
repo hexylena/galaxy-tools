@@ -1,0 +1,40 @@
+---
+meta:
+   name: blat
+   vers: 35x1
+   readme: |
+      BLAT sequence aligner from the UCSC: http://genome.ucsc.edu/FAQ/FAQblat.html
+      Git development repository: http://genome-source.cse.ucsc.edu/gitweb/?p=kent.git
+
+      Please note that the BLAT source and executables are freely available for
+      academic, nonprofit and personal use. Commercial licensing information is
+      available on the Kent Informatics website (http://www.kentinformatics.com/).
+source:
+   git_repo:
+      url: git://genome-source.cse.ucsc.edu/kent.git
+      rev: 84614918e462d7750a8f56e5ce9540c623b87b48
+depends:
+   - repo_name: package_libpng_1_6_7
+     repo_owner: devteam
+     name: libpng
+     vers: 1.6.7
+     build_req: True
+build:
+   commands: |
+      export HOME=$INSTALL_DIR
+      export MACHTYPE=`uname -m`
+      export PNGINCL=-I${LIBPNG_ROOT}/include
+      export PNGLIB="-L${LIBPNG_ROOT}/lib -lpng"
+      mkdir -p $HOME/bin/$MACHTYPE
+      make -C src/lib/
+      make -C src/jkOwnLib/
+      make -C src/blat/
+      mv $INSTALL_DIR/bin/$MACHTYPE/* $INSTALL_DIR/bin/
+      rm -rf $INSTALL_DIR/.ccache/
+   env:
+      - action: prepend
+        name: PATH
+        value: $INSTALL_DIR/bin/
+      - action: set
+        name: BLAT_PATH
+        value: $INSTALL_DIR
