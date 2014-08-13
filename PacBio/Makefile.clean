@@ -6,4 +6,4 @@ all: $(objects)
 
 $(objects):
 	$(eval export PACKAGE_NAME = $@)
-	$(MAKE) -C $@
+	$(MAKE) -C $@ clean
