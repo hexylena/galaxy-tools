@@ -1,4 +1,18 @@
-<tool_dependency><package name="h5py" version="2.3.1"><install version="1.0"><actions><action type="download_by_url">https://pypi.python.org/packages/source/h/h5py/h5py-2.3.1.tar.gz</action><action type="make_directory">$INSTALL_DIR/lib/python</action><action type="shell_command">export PYTHONPATH=$PYTHONPATH:$INSTALL_DIR/lib/python &amp;&amp; python setup.py install --install-lib $INSTALL_DIR/lib/python --install-scripts $INSTALL_DIR/bin</action><action type="set_environment"><environment_variable action="prepend_to" name="PYTHONPATH">$INSTALL_DIR/lib/python</environment_variable><environment_variable action="prepend_to" name="PATH">$INSTALL_DIR/bin</environment_variable></action></actions></install><readme>The h5py package provides both a high- and low-level interface to the HDF5
+<?xml version="1.0"?>
+<tool_dependency>
+  <package name="h5py" version="2.3.1">
+    <install version="1.0">
+      <actions>
+        <action type="download_by_url">https://pypi.python.org/packages/source/h/h5py/h5py-2.3.1.tar.gz</action>
+        <action type="make_directory">$INSTALL_DIR/lib/python</action>
+        <action type="shell_command">export PYTHONPATH=$PYTHONPATH:$INSTALL_DIR/lib/python &amp;&amp; python setup.py install --install-lib $INSTALL_DIR/lib/python --install-scripts $INSTALL_DIR/bin</action>
+        <action type="set_environment">
+          <environment_variable action="prepend_to" name="PYTHONPATH">$INSTALL_DIR/lib/python</environment_variable>
+          <environment_variable action="prepend_to" name="PATH">$INSTALL_DIR/bin</environment_variable>
+        </action>
+      </actions>
+    </install>
+    <readme>The h5py package provides both a high- and low-level interface to the HDF5
 library from Python. The low-level interface is intended to be a complete
 wrapping of the HDF5 API, while the high-level component supports  access to
 HDF5 files, datasets and groups using established Python and NumPy concepts.
@@ -8,4 +22,6 @@ data structures and their HDF5 equivalents vastly simplifies the process of
 reading and writing data from Python.
 
 Supports HDF5 versions 1.8.4 and higher.  On Windows, HDF5 is included with
-the installer.</readme></package></tool_dependency>
+the installer.</readme>
+  </package>
+</tool_dependency>
