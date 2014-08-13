@@ -1,0 +1,29 @@
+---
+meta:
+   name: package_pbalign_2014_04_11
+   vers: 2014.04.11
+   readme: |
+      The pbcore package provides Python APIs for interacting with PacBio
+      data files and writing bioinformatics applications.
+source:
+   git_repo:
+      url: https://github.com/PacificBiosciences/pbcore
+      rev: c362e16d3a5f58e6acc1aa0425932b21dda7f673
+depends:
+   - repo_name: package_numpy_1_8
+     repo_owner: iuc
+     repo_rev: 0f9f634dec8a
+     name: numpy
+     vers: 1.8.1
+     build_req: True
+   - repo_name: package_h5py
+     repo_owner: erasche
+     name: h5py
+     vers: 2.3.1
+     build_req: True
+build:
+   actions:
+      - mkdir: $INSTALL_DIR/lib/python
+      - shell_command: |
+           export PYTHONPATH=$PYTHONPATH:$INSTALL_DIR/lib/python
+           python setup.py install --install-lib $INSTALL_DIR/lib/python --install-scripts $INSTALL_DIR/bin
