@@ -1,0 +1,54 @@
+build:
+  actions: []
+depends:
+- build_req: 'True'
+  name: example
+  repo_name: package_example_1_0
+  repo_owner: iuc
+  repo_rev: 0f9f634dec8a
+  vers: '1.0'
+meta:
+  name: plibblasr
+  readme: 'BLASR Library
+
+    =============
+
+
+    | This repository contains an (incomplete) refactor of core BLASR code
+
+    that
+
+    | compiles into a library. The idea being that other programs needing
+
+    access
+
+    | to BLASR-like functionality can build it right-in instead of forking
+
+    out
+
+    | to a ''blasr'' executable. This has the advantages of enabling tighter
+
+    | integration points within your program flow, eliminates the need for
+
+    | HDF libraries to be installed, among others.
+
+
+    | This first release contains all the basics to enable a sparse dynamic-
+
+    | programming alignment between two sequences. The plan is to eventually
+
+    fold
+
+    | this back into the main BLASR code base, clean up the interface and
+
+    document
+
+    | it more thoroughly.
+
+    '
+  vers: 2013.10.10
+source:
+  git_repo:
+    rev: 053af8420ecf50199949c4d27cf8c66bf0ea04ce
+    url: https://github.com/PacificBiosciences/pblibblasr
+
