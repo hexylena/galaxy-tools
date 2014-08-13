@@ -1,18 +1,10 @@
 <?xml version="1.0"?>
 <tool_dependency>
-  <package name="example" version="1.0">
-    <repository name="package_example_1_0" owner="iuc" prior_installation_required="True" revision="0f9f634dec8a"/>
-  </package>
   <package name="quiver" version="2014.05.01">
     <install version="1.0">
       <actions>
         <action type="shell_command">git clone https://github.com/PacificBiosciences/GenomicConsensus quiver</action>
         <action type="shell_command">git reset --hard b0af169e9346d8f9ac6f95c89db13b0548a7a707</action>
-        <action type="set_environment_for_install">
-          <repository name="package_example_1_0" owner="iuc">
-            <package name="example" version="1.0"/>
-          </repository>
-        </action>
         <action type="make_directory">$INSTALL_DIR/lib/python</action>
         <action type="shell_command">export PYTHONPATH=$PYTHONPATH:$INSTALL_DIR/lib/python &amp;&amp; python setup.py install --install-lib $INSTALL_DIR/lib/python --install-scripts $INSTALL_DIR/bin</action>
       </actions>

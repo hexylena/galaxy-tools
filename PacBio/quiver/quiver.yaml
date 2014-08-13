@@ -4,13 +4,6 @@ build:
   - shell_command: 'export PYTHONPATH=$PYTHONPATH:$INSTALL_DIR/lib/python
 
       python setup.py install --install-lib $INSTALL_DIR/lib/python --install-scripts $INSTALL_DIR/bin'
-depends:
-- build_req: 'True'
-  name: example
-  repo_name: package_example_1_0
-  repo_owner: iuc
-  repo_rev: 0f9f634dec8a
-  vers: '1.0'
 meta:
   name: quiver
   readme: "GenomicConsensus (quiver)\n-------------------------\n\nThe ``GenomicConsensus`` package provides the ``quiver`` tool, PacBio's\nflagship consensus and variant caller. The backend logic is provided by\nthe ``ConsensusCore`` library, which you must install first.\n\nInstalling\n----------\n\nMake sure you have set up and activated your virtualenv, and installed\n``pbcore`` and ``ConsensusCore`` (which cannot be installed\nautomatically by pip or setuptools). Then:\n\n.. code:: sh\n\n    % python setup.py install\n\nRunning\n-------\n\nBasic usage is as follows:\n\n.. code:: sh\n\n    % quiver aligned_reads.cmp.h5 -r reference.fasta -o variants.gff -o consensus.fasta -o consensus.fastq\n\nin this example we perform haploid consensus and variant calling on the\nmapped reads in the ``aligned_reads.cmp.h5`` which was aligned to\n``reference.fasta``. The ``reference.fasta`` is only used for\ndesignating variant calls, not for computing the consensus. The\nconsensus quality score for every position can be found in the output\nFASTQ file.\n\nDocumentation\n-------------\n\n-  `More detailed installation\n   instructions <https://github.com/PacificBiosciences/GenomicConsensus/blob/master/doc/HowToQuiver.rst>`__\n-  `Quiver\n   FAQ <https://github.com/PacificBiosciences/GenomicConsensus/blob/master/doc/QuiverFAQ.rst>`__\n-  `variants.gff\n   spec <https://github.com/PacificBiosciences/GenomicConsensus/blob/master/doc/VariantsGffSpecification.rst>`__\n-  `CHANGELOG <https://github.com/PacificBiosciences/GenomicConsensus/blob/master/CHANGELOG>`__\n\n"
