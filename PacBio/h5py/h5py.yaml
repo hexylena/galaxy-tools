@@ -1,0 +1,38 @@
+build:
+  actions:
+  - mkdir: $INSTALL_DIR/lib/python
+  - shell_command: 'export PYTHONPATH=$PYTHONPATH:$INSTALL_DIR/lib/python
+
+      python setup.py install --install-lib $INSTALL_DIR/lib/python --install-scripts $INSTALL_DIR/bin'
+  env:
+  - action: prepend
+    name: PYTHONPATH
+    value: $INSTALL_DIR/lib/python
+  - action: prepend
+    name: PATH
+    value: $INSTALL_DIR/bin
+meta:
+  name: h5py
+  readme: 'The h5py package provides both a high- and low-level interface to the HDF5
+
+    library from Python. The low-level interface is intended to be a complete
+
+    wrapping of the HDF5 API, while the high-level component supports  access to
+
+    HDF5 files, datasets and groups using established Python and NumPy concepts.
+
+
+    A strong emphasis on automatic conversion between Python (Numpy) datatypes and
+
+    data structures and their HDF5 equivalents vastly simplifies the process of
+
+    reading and writing data from Python.
+
+
+    Supports HDF5 versions 1.8.4 and higher.  On Windows, HDF5 is included with
+
+    the installer.'
+  vers: 2.3.1
+source:
+  archive_url: https://pypi.python.org/packages/source/h/h5py/h5py-2.3.1.tar.gz
+
