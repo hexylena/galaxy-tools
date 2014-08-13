@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<datatypes>
+	<datatype_files>
+		<datatype_file name="pacbio.py"/>
+	</datatype_files>
+	<registration>
+		<datatype extension="smrt" type="galaxy.datatypes.pacbio:SMRTCell" mimetype="application/xml" display_in_upload="true"/>
+	</registration>
+	<sniffers>
+		<!--<sniffer type="galaxy.datatypes.pacbio:SMRTCell"/>-->
+	</sniffers>
+</datatypes>
