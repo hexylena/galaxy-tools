@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<tool_dependency>
+  <package name="example" version="1.0">
+    <repository name="package_example_1_0" owner="iuc" prior_installation_required="True" revision="0f9f634dec8a"/>
+  </package>
+  <package name="pbh5tools" version="2014.03.31">
+    <install version="1.0">
+      <actions>
+        <action type="shell_command">git clone https://github.com/PacificBiosciences/pbh5tools pbh5tools</action>
+        <action type="shell_command">git reset --hard 0b63069f951c9a8c19799e1d061147c67ac25d9c</action>
+        <action type="set_environment_for_install">
+          <repository name="package_example_1_0" owner="iuc">
+            <package name="example" version="1.0"/>
+          </repository>
+        </action>
+        <action type="make_directory">$INSTALL_DIR/lib/python</action>
+        <action type="shell_command">export PYTHONPATH=$PYTHONPATH:$INSTALL_DIR/lib/python &amp;&amp; python setup.py install --install-lib $INSTALL_DIR/lib/python --install-scripts $INSTALL_DIR/bin</action>
+      </actions>
+    </install>
+    <readme>``pbh5tools`` -- tools for manipulating HDF5 files produced by Pacific
+Biosciences. Specifically, this package provides functionality for
+manipulating and extracting data from "cmp.h5" and "bas.h5" files.
+
+`Detailed documentation here &lt;doc/index.rst&gt;`__.
+</readme>
+  </package>
+</tool_dependency>

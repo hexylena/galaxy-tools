@@ -1,0 +1,31 @@
+build:
+  actions:
+  - mkdir: $INSTALL_DIR/lib/python
+  - shell_command: 'export PYTHONPATH=$PYTHONPATH:$INSTALL_DIR/lib/python
+
+      python setup.py install --install-lib $INSTALL_DIR/lib/python --install-scripts $INSTALL_DIR/bin'
+depends:
+- build_req: 'True'
+  name: example
+  repo_name: package_example_1_0
+  repo_owner: iuc
+  repo_rev: 0f9f634dec8a
+  vers: '1.0'
+meta:
+  name: pbh5tools
+  readme: '``pbh5tools`` -- tools for manipulating HDF5 files produced by Pacific
+
+    Biosciences. Specifically, this package provides functionality for
+
+    manipulating and extracting data from "cmp.h5" and "bas.h5" files.
+
+
+    `Detailed documentation here <doc/index.rst>`__.
+
+    '
+  vers: 2014.03.31
+source:
+  git_repo:
+    rev: 0b63069f951c9a8c19799e1d061147c67ac25d9c
+    url: https://github.com/PacificBiosciences/pbh5tools
+
