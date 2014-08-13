@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<tool_dependency>
+  <package name="example" version="1.0">
+    <repository name="package_example_1_0" owner="iuc" prior_installation_required="True" revision="0f9f634dec8a"/>
+  </package>
+  <package name="quiver" version="2014.05.01">
+    <install version="1.0">
+      <actions>
+        <action type="shell_command">git clone https://github.com/PacificBiosciences/GenomicConsensus quiver</action>
+        <action type="shell_command">git reset --hard b0af169e9346d8f9ac6f95c89db13b0548a7a707</action>
+        <action type="set_environment_for_install">
+          <repository name="package_example_1_0" owner="iuc">
+            <package name="example" version="1.0"/>
+          </repository>
+        </action>
+        <action type="make_directory">$INSTALL_DIR/lib/python</action>
+        <action type="shell_command">export PYTHONPATH=$PYTHONPATH:$INSTALL_DIR/lib/python &amp;&amp; python setup.py install --install-lib $INSTALL_DIR/lib/python --install-scripts $INSTALL_DIR/bin</action>
+      </actions>
+    </install>
+    <readme>GenomicConsensus (quiver)
+-------------------------
+
+The ``GenomicConsensus`` package provides the ``quiver`` tool, PacBio's
+flagship consensus and variant caller. The backend logic is provided by
+the ``ConsensusCore`` library, which you must install first.
+
+Installing
+----------
+
+Make sure you have set up and activated your virtualenv, and installed
+``pbcore`` and ``ConsensusCore`` (which cannot be installed
+automatically by pip or setuptools). Then:
+
+.. code:: sh
+
+    % python setup.py install
+
+Running
+-------
+
+Basic usage is as follows:
+
+.. code:: sh
+
+    % quiver aligned_reads.cmp.h5 -r reference.fasta -o variants.gff -o consensus.fasta -o consensus.fastq
+
+in this example we perform haploid consensus and variant calling on the
+mapped reads in the ``aligned_reads.cmp.h5`` which was aligned to
+``reference.fasta``. The ``reference.fasta`` is only used for
+designating variant calls, not for computing the consensus. The
+consensus quality score for every position can be found in the output
+FASTQ file.
+
+Documentation
+-------------
+
+-  `More detailed installation
+   instructions &lt;https://github.com/PacificBiosciences/GenomicConsensus/blob/master/doc/HowToQuiver.rst&gt;`__
+-  `Quiver
+   FAQ &lt;https://github.com/PacificBiosciences/GenomicConsensus/blob/master/doc/QuiverFAQ.rst&gt;`__
+-  `variants.gff
+   spec &lt;https://github.com/PacificBiosciences/GenomicConsensus/blob/master/doc/VariantsGffSpecification.rst&gt;`__
+-  `CHANGELOG &lt;https://github.com/PacificBiosciences/GenomicConsensus/blob/master/CHANGELOG&gt;`__
+
+</readme>
+  </package>
+</tool_dependency>
