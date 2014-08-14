@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<tool id="edu.tamu.cpt.errors.jobfailure" name="Failing Job" version="1.0.0">
+  <description>generates a job failure</description>
+  <stdio>
+    <exit_code level="fatal" range="1:"/>
+  </stdio>
+  <command>python do-nothing-poorly.py $failure > $outfile
+</command>
+  <inputs>
+    <param help="Failure Type" label="failure" name="failure" optional="False" type="select">
+      <option value="raise">raise exception</option>
+      <option value="sysexit">sys.exit(1)</option>
+    </param>
+  </inputs>
+  <outputs>
+    <data format="txt" name="outfile" />
+  </outputs>
+  <help>Tool created to test job failure behaviour</help>
+</tool>
