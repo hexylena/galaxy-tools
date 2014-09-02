@@ -1,0 +1,44 @@
+---
+meta:
+   name: package_libhdf5_1_18_13
+   vers: 1.18.13
+   readme: |
+      HDF5 Library from the HDF group's website
+source:
+   archive_url: http://www.hdfgroup.org/ftp/HDF5/current/bin/linux/hdf5-1.8.13-linux-shared.tar.gz
+build:
+   actions:
+      - move_directory_files:
+        source: bin/
+        dest: $INSTALL_DIR/bin/
+      - move_directory_files:
+        source: include/
+        dest: $INSTALL_DIR/include/
+      - move_directory_files:
+        source: lib/
+        dest: $INSTALL_DIR/lib/
+      - move_directory_files:
+        source: share/
+        dest: $INSTALL_DIR/share/
+   env:
+      - action: prepend
+        name: PATH
+        value: $INSTALL_DIR/bin/
+      - action: prepend
+        name: LD_LIBRARY_PATH
+        value: $INSTALL_DIR/lib/
+      - action: prepend
+        name: LIBRARY_PATH
+        value: $INSTALL_DIR/lib/
+      - action: prepend
+        name: CPLUS_INCLUDE_PATH
+        value: $INSTALL_DIR/include/
+      - action: prepend
+        name: C_INCLUDE_PATH
+        value: $INSTALL_DIR/include/
+      - action: set
+        name: HDF5_LIB_DIR
+        value: $INSTALL_DIR/lib/
+      - action: set
+        name: HDF5_SHARE_DIR
+        value: $INSTALL_DIR/share/

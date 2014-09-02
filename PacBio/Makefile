@@ -1,4 +1,4 @@
-objects = blasr h5py pbalign pbcore pbdagcon pbh5tools plibblasr quiver
+objects = blasr h5py pbalign pbcore pbdagcon pbh5tools plibblasr quiver hdf5
 
 .PHONY: all clean $(objects)
 
