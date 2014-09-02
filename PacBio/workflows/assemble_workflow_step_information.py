@@ -32,8 +32,13 @@ class Parameter(object):
 
 class GalaxyTool(object):
 
-    def __init__(self, parameter_list):
+    def __init__(self, path, parameter_list):
         self.params = parameter_list
+        self.path = path
+
+    def generate_xml(self):
+        print self.path
+        return ""
 
 for xml_file in module_xml_files.strip().split('\n'):
     tree = ET.parse(xml_file)
@@ -50,10 +55,11 @@ for xml_file in module_xml_files.strip().split('\n'):
         else:
             complete_parameter_list[parsed_param.name] = parsed_param
         local_parameter_list[xml_file][parsed_param.name] = parsed_param
-    with open(xml_file.replace('/', '.') + '.xml', 'w') as handle:
-        passed_params = local_parameter_list[xml_file].values
-        galaxy_tool = GalaxyTool(passed_params)
-        handle.write(galaxy_tool.generate_xml())
+    #with open(xml_file.replace('/', '.') + '.xml', 'w') as handle:
+    passed_params = local_parameter_list[xml_file].values
+    galaxy_tool = GalaxyTool(xml_file, passed_params)
+    galaxy_tool.generate_xml()
+        #handle.write(galaxy_tool.generate_xml())
 
-import pprint
-pprint.pprint(local_parameter_list)
+#import pprint
+#pprint.pprint(local_parameter_list)
