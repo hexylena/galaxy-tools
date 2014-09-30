@@ -18,9 +18,10 @@ def handle_dependency(node, dependency, in_build=False):
         repo.set('name', dependency['repo_name'])
         repo.set('owner', dependency['repo_owner'])
         if 'repo_rev' in dependency:
-            repo.set('revision', dependency['repo_rev'])
+            repo.set('changeset_revision', dependency['repo_rev'])
         if dependency['build_req']:
             repo.set('prior_installation_required', 'True')
+        repo.set('toolshed', dependency['toolshed'])
     else:
         repo = ET.SubElement(node, 'repository')
         repo.set('name', dependency['repo_name'])
