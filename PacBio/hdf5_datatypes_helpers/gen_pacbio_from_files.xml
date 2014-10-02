@@ -4,13 +4,15 @@
   <stdio>
     <exit_code level="fatal" range="1:"/>
   </stdio>
-  <command interpreter="python">
-      python gen_pacbio_from_files.py $output.files_path $bash5 ${' '.join([x.movie for x in $baxh5])}
+  <command interpreter="python">gen_pacbio_from_files.py $output.files_path $bash5
+#for file in $baxh5:
+  ${file.baxh5}
+#end for
 </command>
   <inputs>
-    <param help="bas.h5" label="reads" name="bash5" optional="False" type="data" format="hdf5"/>
+    <param help="bas.h5" label="reads" name="bash5" optional="False" type="data" format="h5"/>
     <repeat name="baxh5" title="bax.h5 file">
-      <param format="hdf5" help="Add a child bax.h5 movie" label="bax.h5" name="baxh5" type="data"/>
+      <param format="h5" help="Add a child bax.h5 movie" label="bax.h5" name="baxh5" type="data"/>
     </repeat>
   </inputs>
   <outputs>

@@ -12,7 +12,7 @@ root = ET.Element("tool_dependency")
 def handle_dependency(node, dependency, in_build=False):
     if not in_build:
         package = ET.SubElement(node, 'package')
-        package.set('name', dependency['name'])
+        package.set('name', dependency['repo_name'])
         package.set('version', dependency['vers'])
         repo = ET.SubElement(package, 'repository')
         repo.set('name', dependency['repo_name'])
@@ -27,7 +27,7 @@ def handle_dependency(node, dependency, in_build=False):
         repo.set('name', dependency['repo_name'])
         repo.set('owner', dependency['repo_owner'])
         package = ET.SubElement(repo, 'package')
-        package.set('name', dependency['name'])
+        package.set('name', dependency['repo_name'])
         package.set('version', dependency['vers'])
 
 

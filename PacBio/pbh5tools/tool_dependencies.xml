@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <tool_dependency>
-  <package name="example" version="1.0">
-    <repository name="package_example_1_0" owner="iuc" prior_installation_required="True" revision="0f9f634dec8a"/>
+  <package name="package_example_1_0" version="1.0">
+    <repository changeset_revision="0f9f634dec8a" name="package_example_1_0" owner="iuc" prior_installation_required="True" toolshed="https://cpt.tamu.edu/toolshed/"/>
   </package>
   <package name="pbh5tools" version="2014.03.31">
     <install version="1.0">
@@ -10,7 +10,7 @@
         <action type="shell_command">git reset --hard 0b63069f951c9a8c19799e1d061147c67ac25d9c</action>
         <action type="set_environment_for_install">
           <repository name="package_example_1_0" owner="iuc">
-            <package name="example" version="1.0"/>
+            <package name="package_example_1_0" version="1.0"/>
           </repository>
         </action>
         <action type="make_directory">$INSTALL_DIR/lib/python</action>

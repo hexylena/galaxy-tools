@@ -16,7 +16,8 @@
 #end if
 
 
-blasr ${reads} ${genome_fasta}
+blasr ${reads.extra_files_path}/parent.bas.h5 ${genome_fasta}
+
 
 #if $sa and $sa is not "None":
 -sa "${sa}"
@@ -54,7 +55,7 @@ blasr ${reads} ${genome_fasta}
 -ignoreHQRegions
 #end if
 
-#if $bestn and $bestn is not "None":
+#if $bestn and $bestn is not "None" and int($bestn) > 0:
 -bestn "${bestn}"
 #end if
 
@@ -110,8 +111,8 @@ blasr ${reads} ${genome_fasta}
 
 </command>
   <inputs>
-    <param help="Fasta/plx.h5/bax.h5 data" label="reads" name="reads" optional="False" type="data"/>
-    <param help="Fasta Genome" label="genome_fasta" name="genome_fasta" optional="False" type="data" file_format="fasta"/>
+    <param help="Fasta/plx.h5/bax.h5 data" label="reads" name="reads" optional="False" type="data" format="pacbioreads"/>
+    <param help="Fasta Genome" label="genome_fasta" name="genome_fasta" optional="False" type="data" format="fasta"/>
     <param help="Use the suffix array 'sa' for detecting matches between the reads and the reference.  The suffix array has been prepared by the sawriter program." label="sa" name="sa" optional="True" type="data"/>
     <param format="pacbio_ctab" help="A table of tuple counts used to estimate match significance. This is by the program 'printTupleCountTable'.  While it is quick to generate on the fly, if there are many invocations of blasr, it is useful to precompute the ctab." label="ctab" name="ctab" optional="True" type="data"/>
     <repeat name="repeat_regionTable" title="Regiontable">

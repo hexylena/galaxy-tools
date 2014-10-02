@@ -15,12 +15,14 @@ depends:
      name: numpy
      vers: 1.8.1
      build_req: True
+     toolshed: https://toolshed.g2.bx.psu.edu/
    - repo_name: package_h5py
-     repo_owner: erasche
+     repo_owner: esr
      #repo_rev: 0f9f634dec8a
      name: h5py
      vers: Unknown
      build_req: True
+     toolshed: https://cpt.tamu.edu/toolshed/
 build:
    actions:
       - mkdir: $INSTALL_DIR/lib/python

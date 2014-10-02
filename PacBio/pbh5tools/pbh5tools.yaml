@@ -11,6 +11,7 @@ depends:
   repo_owner: iuc
   repo_rev: 0f9f634dec8a
   vers: '1.0'
+  toolshed: https://cpt.tamu.edu/toolshed/
 meta:
   name: pbh5tools
   readme: '``pbh5tools`` -- tools for manipulating HDF5 files produced by Pacific

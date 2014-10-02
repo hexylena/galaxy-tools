@@ -1,5 +1,6 @@
 ---
 meta:
+   short: libhdf5
    name: package_libhdf5_1_18_13
    vers: 1.18.13
    readme: |

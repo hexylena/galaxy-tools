@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <tool_dependency>
-  <package name="numpy" version="1.8.1">
-    <repository name="package_numpy_1_8" owner="iuc" prior_installation_required="True" revision="0f9f634dec8a"/>
+  <package name="package_numpy_1_8" version="1.8.1">
+    <repository changeset_revision="0f9f634dec8a" name="package_numpy_1_8" owner="iuc" prior_installation_required="True" toolshed="https://toolshed.g2.bx.psu.edu/"/>
   </package>
-  <package name="h5py" version="2.3.1">
-    <repository name="package_h5py" owner="erasche" prior_installation_required="True"/>
+  <package name="package_h5py" version="2.3.1">
+    <repository name="package_h5py" owner="esr" prior_installation_required="True" toolshed="https://cpt.tamu.edu/toolshed/"/>
   </package>
   <package name="package_pbalign_2014_04_11" version="2014.04.11">
     <install version="1.0">
@@ -13,12 +13,12 @@
         <action type="shell_command">git reset --hard c362e16d3a5f58e6acc1aa0425932b21dda7f673</action>
         <action type="set_environment_for_install">
           <repository name="package_numpy_1_8" owner="iuc">
-            <package name="numpy" version="1.8.1"/>
+            <package name="package_numpy_1_8" version="1.8.1"/>
           </repository>
         </action>
         <action type="set_environment_for_install">
-          <repository name="package_h5py" owner="erasche">
-            <package name="h5py" version="2.3.1"/>
+          <repository name="package_h5py" owner="esr">
+            <package name="package_h5py" version="2.3.1"/>
           </repository>
         </action>
         <action type="make_directory">$INSTALL_DIR/lib/python</action>

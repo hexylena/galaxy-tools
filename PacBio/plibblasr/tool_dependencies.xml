@@ -1,18 +1,10 @@
 <?xml version="1.0"?>
 <tool_dependency>
-  <package name="example" version="1.0">
-    <repository name="package_example_1_0" owner="iuc" prior_installation_required="True" revision="0f9f634dec8a"/>
-  </package>
   <package name="plibblasr" version="2013.10.10">
     <install version="1.0">
       <actions>
         <action type="shell_command">git clone https://github.com/PacificBiosciences/pblibblasr plibblasr</action>
         <action type="shell_command">git reset --hard 053af8420ecf50199949c4d27cf8c66bf0ea04ce</action>
-        <action type="set_environment_for_install">
-          <repository name="package_example_1_0" owner="iuc">
-            <package name="example" version="1.0"/>
-          </repository>
-        </action>
       </actions>
     </install>
     <readme>BLASR Library

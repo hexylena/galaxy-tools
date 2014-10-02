@@ -1,12 +1,5 @@
 build:
   actions: []
-depends:
-- build_req: 'True'
-  name: example
-  repo_name: package_example_1_0
-  repo_owner: iuc
-  repo_rev: 0f9f634dec8a
-  vers: '1.0'
 meta:
   name: plibblasr
   readme: 'BLASR Library

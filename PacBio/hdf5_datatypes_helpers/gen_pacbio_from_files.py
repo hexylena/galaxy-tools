@@ -14,11 +14,10 @@ if not os.path.exists(OUT_FILE_PATH):
     os.makedirs(OUT_FILE_PATH)
 
 NEW_BAS_H5 = os.path.join(OUT_FILE_PATH, 'parent.bas.h5')
-shutil.copy(PARENT_BASH5, os.path.join(OUT_FILE_PATH, 'parent.bas.h5'))
+shutil.copy(PARENT_BASH5, NEW_BAS_H5)
 for child in CHILDREN:
-    shutil.copy(child, os.path.join(OUT_FILE_PATH, child.rsplit('/', 1)[1]))
-
-
+    shutil.copy(child, os.path.join(OUT_FILE_PATH, child.rsplit('/', 1)[1]) +
+                '.bax.h5')
 
 f = h5py.File(NEW_BAS_H5, 'r+')
 # Remove the original
@@ -30,7 +29,7 @@ except:
 dt = h5py.special_dtype(vlen=bytes)
 # Re-add the dataset with the names of whichever children are passed in
 dset = f.create_dataset('MultiPart/Parts',
-                        data=numpy.array([x.rsplit('/', 1)[1] for x in
-                                          CHILDREN]), dtype=dt)
+                        data=numpy.array([x.rsplit('/', 1)[1] + '.bax.h5' for x
+                                          in CHILDREN]), dtype=dt)
 # Add the description though they probably don't need it/won't check it
 dset.attrs.create('Description', numpy.array(['File part names']), dtype=dt)
