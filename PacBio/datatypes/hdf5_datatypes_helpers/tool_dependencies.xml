@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<tool_dependency>
+  <package name="hdf5_datatypes" version="0.1">
+      <repository changeset_revision="cd618fb93096" name="hdf5_datatypes" owner="esr" prior_installation_required="True"
+          toolshed="https://cpt.tamu.edu/toolshed-test/"/>
+  </package>
+</tool_dependency>
