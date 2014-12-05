@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<tool id="edu.tamu.cpt.gsaf.download" name="GSAF Download" version="1.0.0">
+  <description>downloads data from UT's GSAF</description>
+  <stdio>
+    <exit_code level="fatal" range="1:"/>
+  </stdio>
+  <command interpreter="python">
+      gsaf_download.sh "$url" ${data.id} > $data
+</command>
+  <inputs>
+      <param help="This link should be in an email from them, right click and [Copy Link Location]" label="GSAF URL" name="url" type="text" value="http://gsaf.s3.amazonaws.com/...">
+      <sanitizer>
+        <valid initial="string.printable">
+         <remove value="&apos;"/>
+         <remove value="&quot;"/>
+        </valid>
+      </sanitizer>
+     </param>
+  </inputs>
+  <outputs>
+    <data format="fastq" name="data">
+        <discover_datasets pattern="__designation__" ext="fastq" directory="output" visible="true" />
+    </data>
+  </outputs>
+  <help>
+GSAF Fetcher
+=======================
+
+Basic wrapper around GSAF's tool to download data.
+</help>
+  <tests/>
+</tool>
