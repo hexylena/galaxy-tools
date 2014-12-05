@@ -40,14 +40,14 @@ for gsafjson in [x[len(prefix): -len(suffix)].strip() for x in comments if 'gsaf
     data = json.loads(gsafjson)
     log.info("Fetching %s" % data['filename'])
     file_path = os.path.join('output', data['filename'])
-    #urllib.urlretrieve(data['url'], file_path)
+    urllib.urlretrieve(data['url'], file_path)
     log.info("Hashing file")
-    #file_md5 = hashlib.md5(open(file_path).read()).hexdigest()
-    #log.debug("Hashed to %s" % file_md5)
+    file_md5 = hashlib.md5(open(file_path).read()).hexdigest()
+    log.debug("Hashed to %s" % file_md5)
 
     stderr = ''
-    #if file_md5 != data['md5']:
-        #stderr = 'md5sum mismatch: %s != %s' % (file_md5, data['md5'])
+    if file_md5 != data['md5']:
+        stderr = 'md5sum mismatch: %s != %s' % (file_md5, data['md5'])
 
     # Galaxy.json
     # {"name": "lambda.fa", "stdout": "uploaded fasta file", "line_count": 811, "ext": "fasta", "dataset_id": 16220, "type": "dataset"}
@@ -65,10 +65,10 @@ for gsafjson in [x[len(prefix): -len(suffix)].strip() for x in comments if 'gsaf
         'type': 'dataset'
     }
 
-    #try:
-        #subprocess.check_call(['gunzip', file_path])
-    #except:
-        #log.error("Couldn't extract %s" % data['filename'])
+    try:
+        subprocess.check_call(['gunzip', file_path])
+    except:
+        log.error("Couldn't extract %s" % data['filename'])
 
     gx_json.write(json.dumps(galaxy_json) + "\n")
 
