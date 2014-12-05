@@ -5,7 +5,7 @@
     <exit_code level="fatal" range="1:"/>
   </stdio>
   <command interpreter="python">
-      gsaf_download.sh "$url" ${data.id} > $data
+      gsaf_download.py "$url" ${data.id} > $data
 </command>
   <inputs>
       <param help="This link should be in an email from them, right click and [Copy Link Location]" label="GSAF URL" name="url" type="text" value="http://gsaf.s3.amazonaws.com/...">
