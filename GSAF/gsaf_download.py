@@ -18,10 +18,8 @@ except:
 URL = sys.argv[1]
 DATASET_ID = sys.argv[2]
 
-#req = urllib2.urlopen(URL)
-#page = req.read()
-with open('file.html', 'r') as handle:
-    page = handle.read()
+req = urllib2.urlopen(URL)
+page = req.read()
 comments = [x.strip() for x in page.split('\n') if x.strip().startswith('<!--')]
 
 gx_json = open('galaxy.json', 'w')
