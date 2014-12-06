@@ -5,7 +5,7 @@
     <exit_code level="fatal" range="1:"/>
   </stdio>
   <command interpreter="python">
-      gsaf_download.py "$url" ${data.id} > $data
+      gsaf_download.py "$url" ${data.id} 2&gt;&amp;1 &gt; $data
 </command>
   <inputs>
       <param help="This link should be in an email from them, right click and [Copy Link Location]" label="GSAF URL" name="url" type="text" value="http://gsaf.s3.amazonaws.com/...">
@@ -27,6 +27,10 @@ GSAF Fetcher
 =======================
 
 Basic wrapper around GSAF's tool to download data.
+
+Please be aware that due to a known issue, datasets will appear slowly over
+time rather than appearing all at once. This has been discussed with the Galaxy
+devteam, and hopefully a workable solution will be found soon.
 </help>
   <tests/>
 </tool>
