@@ -4,7 +4,7 @@
     <install version="1.0">
       <actions>
         <action type="download_by_url">http://mbio-serv2.mbioekol.lu.se/ARAGORN/Downloads/aragorn1.2.36.tgz</action>
-        <action type="shell_command">gcc -O3 -ffast-math -filnline-functions -o aragorn aragorn1.2.36.c</action>
+        <action type="shell_command">gcc -O3 -ffast-math -finline-functions -o aragorn aragorn1.2.36.c</action>
         <action type="move_file">
           <source>aragorn</source>
           <destination>$INSTALL_DIR/bin/aragorn</destination>
