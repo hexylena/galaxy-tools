@@ -1,0 +1,46 @@
+<tool force_history_refresh="false" hidden="false" name="aragorn" version="1.2.36" workflow_compatible="true">
+  <description>tRNA finder</description>
+  <stdio>
+    <exit_code level="fatal" range="1:"/>
+  </stdio>
+  <command><![CDATA[aragorn ['$m\n$t\n$mt\n$mtmam\n$mtx\n-gc$gc\n$tv\n-i$i_min,$i_max\n\n$io\n$if\n$ifo\n$ir\n$c\n$l\n$d\n$ss\n$ps\n-ps$ps\n$rp\n$seq\n$br\n$fasta\n$fo\n$fon\n$fos\n$fons\n$j\n$jr\n$jr4\n$v\n$a\n$w', '-o $o']]]></command>
+  <inputs>
+    <param checked="false" help="(-m) Search for tmRNA genes." label="m" type="boolean" truevalue="$m"/>
+    <param checked="false" help="(-t) Search for tRNA genes. By default, both are detected. If one of -m or -t is specified, then the other is not detected unless specified as well." label="t" type="boolean" truevalue="$t"/>
+    <param checked="false" help="(-mt) Search for Metazoan mitochondrial tRNA genes. -i switch ignored. Composite Metazoan mitochondrial genetic code used." label="mt" type="boolean" truevalue="$mt"/>
+    <param checked="false" help="(-mtmam) Search for Mammalian mitochondrial tRNA genes. -i switch ignored. -tv switch set. Mammalian mitochondrial genetic code used." label="mtmam" type="boolean" truevalue="$mtmam"/>
+    <param checked="false" help="(-mtx) Same as -mt but low scoring tRNA genes are not reported." label="mtx" type="boolean" truevalue="$mtx"/>
+    <param help="(-gc) Use the GenBank transl_table = &lt;num&gt; genetic code." label="gc" type="integer" value="0"/>
+    <param checked="false" help="(-tv) Do not search for mitochondrial TV replacement loop tRNA genes. Only relevant if -mt used." label="tv" type="boolean" truevalue="$tv"/>
+    <param help="(-i_min) Search for tRNA genes with introns in anticodon loop with maximum length &lt;max&gt; bases, and minimum length &lt;min&gt; bases. Ignored if -m is specified." label="i_min" type="integer" value="0"/>
+    <param help="(-i_max) Search for tRNA genes with introns in anticodon loop with maximum length &lt;max&gt; bases, and minimum length &lt;min&gt; bases. Ignored if -m is specified." label="i_max" type="integer" value="0"/>
+    <param checked="false" help="(-io) Same as -i, but allow tRNA genes with long introns to overlap shorter tRNA genes." label="io" type="boolean" truevalue="$io"/>
+    <param checked="false" help="(-if) Same as -i, but fix intron between positions 37 and 38 on C-loop (one base after anticodon)." label="if" type="boolean" truevalue="$if"/>
+    <param checked="false" help="(-ifo) Same as -if and -io combined." label="ifo" type="boolean" truevalue="$ifo"/>
+    <param checked="false" help="(-ir) Same as -i, but search for tRNA genes with minimum intron length 0 bases, and only report tRNA genes with minimum intron length &lt;min&gt; bases." label="ir" type="boolean" truevalue="$ir"/>
+    <param checked="false" help="(-c) Assume that each sequence has a circular topology. Search wraps around each end. Default setting." label="c" type="boolean" truevalue="$c"/>
+    <param checked="false" help="(-l) Assume that each sequence has a linear topology. Search does not wrap." label="l" type="boolean" truevalue="$l"/>
+    <param checked="false" help="(-d) Double. Search both strands of each sequence. Default setting." label="d" type="boolean" truevalue="$d"/>
+    <param checked="false" help="(-ss) Use the stricter canonical 1-2 bp spacer1 and 1 bp spacer2. Ignored if -mt set. Default is to allow 3 bp spacer1 and 0-2 bp spacer2, which may degrade selectivity." label="ss" type="boolean" truevalue="$ss"/>
+    <param checked="false" help="(-ps) Lower scoring thresholds to 95% of default levels." label="ps" type="boolean" truevalue="$ps"/>
+    <param help="(-ps) Change scoring thresholds to &lt;num&gt; percent of default levels." label="ps" type="integer" value="0"/>
+    <param checked="false" help="(-rp) Flag possible pseudogenes (score &lt; 100 or tRNA anticodon loop &lt;&gt; 7 bases long). Note that genes with score &lt; 100 will not be detected or flagged if scoring thresholds are not also changed to below 100% (see -ps switch)." label="rp" type="boolean" truevalue="$rp"/>
+    <param checked="false" help="(-seq) Print out primary sequence." label="seq" type="boolean" truevalue="$seq"/>
+    <param checked="false" help="(-br) Show secondary structure of tRNA gene primary sequence with round brackets." label="br" type="boolean" truevalue="$br"/>
+    <param checked="false" help="(-fasta) Print out primary sequence in fasta format." label="fasta" type="boolean" truevalue="$fasta"/>
+    <param checked="false" help="(-fo) Print out primary sequence in fasta format only (no secondary structure)." label="fo" type="boolean" truevalue="$fo"/>
+    <param checked="false" help="(-fon) Same as -fo, with sequence and gene numbering in header." label="fon" type="boolean" truevalue="$fon"/>
+    <param checked="false" help="(-fos) Same as -fo, with no spaces in header." label="fos" type="boolean" truevalue="$fos"/>
+    <param checked="false" help="(-fons) Same as -fo, with sequence and gene numbering, but no spaces." label="fons" type="boolean" truevalue="$fons"/>
+    <param checked="false" help="(-j) Display 4-base sequence on 3' end of astem regardless of predicted amino-acyl acceptor length." label="j" type="boolean" truevalue="$j"/>
+    <param checked="false" help="(-jr) Allow some divergence of 3' amino-acyl acceptor sequence from NCCA." label="jr" type="boolean" truevalue="$jr"/>
+    <param checked="false" help="(-jr4) Allow some divergence of 3' amino-acyl acceptor sequence from NCCA, and display 4 bases." label="jr4" type="boolean" truevalue="$jr4"/>
+    <param checked="false" help="(-v) Verbose. Prints out search progress to STDERR." label="v" type="boolean" truevalue="$v"/>
+    <param checked="false" help="(-a) Print out tRNA domain for tmRNA genes" label="a" type="boolean" truevalue="$a"/>
+    <param checked="false" help="(-w) Print out genes in batch mode. For tRNA genes, output is in the form:  Sequence name N genes found 1 tRNA-&lt;species&gt; [locus 1] &lt;Apos&gt; (nnn) i(&lt;intron position&gt;,&lt;intron length&gt;) . . N tRNA-&lt;species&gt; [Locus N] &lt;Apos&gt; (nnn) i(&lt;intron position&gt;,&lt;intron length&gt;)  N is the number of genes found &lt;species&gt; is the tRNA iso-acceptor species &lt;Apos&gt; is the tRNA anticodon relative position (nnn) is the tRNA anticodon base triplet i means the tRNA gene has a C-loop intron  For tmRNA genes, output is in the form:  n tmRNA(p) [Locus n] &lt;tag offset&gt;,&lt;tag end offset&gt; &lt;tag peptide&gt;  p means the tmRNA gene is permuted  " label="w" type="boolean" truevalue="$w"/>
+  </inputs>
+  <outputs>
+    <data format="tabular" hidden="false" name="o"/>
+  </outputs>
+  <help><![CDATA[HI]]></help>
+</tool>

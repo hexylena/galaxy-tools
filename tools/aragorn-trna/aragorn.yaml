@@ -1,0 +1,18 @@
+---
+meta:
+   name: package_aragorntrna_1_2_36
+   vers: 1.2.36
+   readme: |
+source:
+   archive_url: http://mbio-serv2.mbioekol.lu.se/ARAGORN/Downloads/aragorn1.2.36.tgz
+build:
+   actions:
+      - shell_command: |
+          gcc -O3 -ffast-math -finline-functions -o aragorn aragorn1.2.36.c
+      - move_file:
+        source: aragorn
+        dest: $INSTALL_DIR/bin/aragorn
+   env:
+      - action: prepend
+        name: PATH
+        value: $INSTALL_DIR/bin/

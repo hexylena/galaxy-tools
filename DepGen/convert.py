@@ -102,6 +102,12 @@ def handle_extra_actions(node):
             source.text = action_data['source']
             destination = ET.SubElement(action, 'destination_directory')
             destination.text = action_data['dest']
+        elif 'move_file' in action_data:
+            action.set('type', 'move_file')
+            source = ET.SubElement(action, 'source')
+            source.text = action_data['source']
+            destination = ET.SubElement(action, 'destination')
+            destination.text = action_data['dest']
         else:
             raise Exception("Unsupported action type")
 
