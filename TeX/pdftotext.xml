@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<tool id="edu.tamu.cpt.tex.pdftotext" name="Convert PDF to Text" version="1.0">
+  <description></description>
+  <stdio>
+    <exit_code level="fatal" range="1:"/>
+  </stdio>
+  <command>pdftotext $layout -eol unix $file $output
+</command>
+  <inputs>
+    <param label="PDF File" name="file" optional="False" type="data" format="pdf"/>
+    <param label="Maintain Layout" name="layout" type="boolean" falsevalue="" truevalue="-layout" />
+    <!--
+Usage: pdftotext [options] <PDF-file> [<text-file>]
+-f <int>          : first page to convert
+-l <int>          : last page to convert
+-r <fp>           : resolution, in DPI (default is 72)
+-x <int>          : x-coordinate of the crop area top left corner
+-y <int>          : y-coordinate of the crop area top left corner
+-W <int>          : width of crop area in pixels (default is 0)
+-H <int>          : height of crop area in pixels (default is 0)
+-layout           : maintain original physical layout
+-fixed <fp>       : assume fixed-pitch (or tabular) text
+-raw              : keep strings in content stream order
+-eol <string>     : output end-of-line convention (unix, dos, or mac)
+-nopgbrk          : don't insert page breaks between pages
+-bbox             : output bounding box for each word and page size to html.  Sets -htmlmeta
+
+-opw <string>     : owner password (for encrypted files)
+-upw <string>     : user password (for encrypted files)
+-->
+  </inputs>
+  <outputs>
+    <data format="txt" name="output" />
+  </outputs>
+  <help>
+**What it does**
+
+Converts a PDF to a text file
+
+**Info**
+
+Depends on poppler-utils
+</help>
+</tool>
