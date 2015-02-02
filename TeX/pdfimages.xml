@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<tool id="edu.tamu.cpt.tex.pdfimages" name="Extract images from PDFs" version="1.0">
+  <description></description>
+  <stdio>
+    <exit_code level="fatal" range="1:"/>
+  </stdio>
+  <command>
+mkdir $output.files_path;
+pdfimages $output.files_path/data
+</command>
+  <inputs>
+    <param label="PDF File" name="file" optional="False" type="data" format="pdf"/>
+    <!--
+pdfimages version 0.24.5
+Copyright 2005-2013 The Poppler Developers - http://poppler.freedesktop.org
+Copyright 1996-2011 Glyph & Cog, LLC
+Usage: pdfimages [options] <PDF-file> <image-root>
+-f <int>       : first page to convert
+-l <int>       : last page to convert
+-j             : write JPEG images as JPEG files
+-list          : print list of images instead of saving
+-opw <string>  : owner password (for encrypted files)
+-upw <string>  : user password (for encrypted files)
+-p             : include page numbers in output file names
+-q             : don't print any messages or errors
+-->
+  </inputs>
+  <outputs>
+    <data format="txt" name="output">
+        <discover_datasets pattern="__designation_and_ext__" directory="split" visible="true" />
+    </data>
+  </outputs>
+  <help>
+**What it does**
+
+Extracts all images from a pdf file
+
+**Info**
+
+Depends on poppler-utils
+</help>
+</tool>
